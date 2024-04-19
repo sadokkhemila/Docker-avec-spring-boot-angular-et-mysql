@@ -18,7 +18,7 @@ services:
   frontend:
     image: angular
     container_name: angular_container
-    build: ./frontend
+    build: ~/Docker-avec-spring-boot-angular-et-mysql/frontend
     ports:
       - 4207:80
     networks:
