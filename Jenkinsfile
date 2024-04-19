@@ -47,8 +47,9 @@ pipeline {
 	   steps {
                dir('backend'){
                 script {
-		    
-                    sh 'docker build -t back-test .'
+		            sh 'docker stop back-cont'
+                            sh 'docker rm back-cont'
+                           sh 'docker build -t back-test .'
 		            sh 'docker run -d -p 8086:8086 --name back-cont back-test'
 		      
                 }
