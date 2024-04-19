@@ -8,10 +8,12 @@ services:
       - 3306:3306
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=project_db
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE: project_db
+      - MYSQL_USER: user
+      - MYSQL_PASSWORD: password
+    networks:
+      - docker-spring-angular
      
  
   frontend:
@@ -21,6 +23,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4207:80
+    networks:
+      - docker-spring-angular
     
     depends_on:
       - db
@@ -33,5 +37,9 @@ services:
       - 8087:8080
     depends_on:
       - db
+    networks:
+      - docker-spring-angular
+networks:
+  docker-spring-angular:
   
 
