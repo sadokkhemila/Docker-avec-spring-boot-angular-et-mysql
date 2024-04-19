@@ -16,22 +16,18 @@ services:
      
  
   frontend:
+    image: angular
     container_name: angular_container
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    build: ./frontend
     ports:
       - 4207:80
     networks:
       - docker-spring-angular
-    
-    depends_on:
-      - db
+
   backend:
+    image: spring
     container_name: spring_container
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    build: ./backend
     ports:
       - 8087:8080
     depends_on:
