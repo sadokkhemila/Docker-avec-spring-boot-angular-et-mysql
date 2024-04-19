@@ -86,7 +86,7 @@ pipeline {
 			        ]	
 		  ],
 		  credentialsId: 'NEXUS_CREDENTIAL_ID,  
-		  groupId: 'com.example,
+		  groupId: 'com.example',
 		  nexusUrl: 'NEXUS_URL,
 		  nexusVersion: 'NEXUS_VERSION,
 		  protocol: 'NEXUS_PROTOCOL,
