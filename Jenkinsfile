@@ -3,6 +3,14 @@ pipeline {
     tools {
         maven "maven"
     }  
+     environment {
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "51.38.50.55:8081"
+        NEXUS_REPOSITORY = "testproject"
+        NEXUS_CREDENTIAL_ID = "nexus-cred"
+        SCANNER_HOME = tool 'sonar-scanner'
+    }
     
     stages {
          stage("Clone code from git") {
@@ -46,12 +54,9 @@ pipeline {
             }
         }
           stage('Test Qualité Sonarqube') {
-              environment {
-                    scannerHome = tool 'sonar-scanner'
-                }
                steps {           
                   withSonarQubeEnv('sonarqube-server') {
-                         sh" ${scannerHome}/bin/sonar-scanner"                 
+                         sh" ${SCANNER_HOME}/bin/sonar-scanner"                 
                 }
             }
         }
@@ -80,12 +85,12 @@ pipeline {
 				      type: 'jar'	
 			        ]	
 		  ],
-		  credentialsId: 'nexus-cred',
+		  credentialsId: 'NEXUS_CREDENTIAL_ID',  
 		  groupId: 'com.example',
-		  nexusUrl: '51.38.50.55:8081',
-		  nexusVersion: 'nexus3',
-		  protocol: 'http',
-		  repository: 'testproject',
+		  nexusUrl: 'NEXUS_URL',
+		  nexusVersion: 'NEXUS_VERSION',
+		  protocol: 'NEXUS_PROTOCOL',
+		  repository: ' NEXUS_REPOSITORY',
 		  version: '0.0.1-SNAPSHOT'
 	        }
             }
