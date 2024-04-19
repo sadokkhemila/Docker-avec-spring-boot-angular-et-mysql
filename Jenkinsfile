@@ -85,25 +85,25 @@ pipeline {
              }
             } 
         }
-	 stage('upload Backend to nexus'){
+	stage('upload Backend to nexus'){
 		 dir('backend'){
 	     steps{
 		
 		  nexusArtifactUploader artifacts: [	
 			         [
-				      artifactId: '01-maven-web-app',
+				      artifactId: 'backend',
 				      classifier: '',
-				      file: 'target/01-maven-web-app.war',
-				      type: 'war'	
+				      file: 'target/backend-0.0.1-SNAPSHOT.jar',
+				      type: 'jar'	
 			        ]	
 		  ],
 		  credentialsId: 'nexus-cred',
-		  groupId: 'in.ashokit',
+		  groupId: 'com.example',
 		  nexusUrl: '51.38.50.55:8081',
 		  nexusVersion: 'nexus3',
 		  protocol: 'http',
-		  repository: 'testmaven',
-		  version: '3.0-SNAPSHOT'
+		  repository: 'testproject',
+		  version: '0.0.1-SNAPSHOT'
 	        }
             }
 	 }
