@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
   db:
@@ -12,8 +12,7 @@ services:
       - MYSQL_DATABASE=project_db
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
-      networks:
-         - mynetwork
+     
 
   backend:
     depends_on:
@@ -22,8 +21,8 @@ services:
     restart: always
     ports:
       - 8087:8080
-      networks:
-        - mynetwork
+      #networks:
+       # - mynetwork
 
   frontend:
     depends_on:
@@ -31,10 +30,10 @@ services:
     build: ./frontend
     ports:
       - 4207:80
-      networks:
-        - mynetwork
+    #  networks:
+     #   - mynetwork
         
-networks:
-  mynetwork:
-    drive: bridge
+#networks:
+  #mynetwork:
+   # drive: bridge
 
