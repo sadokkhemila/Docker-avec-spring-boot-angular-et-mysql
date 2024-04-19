@@ -13,16 +13,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
      
-  backend:
-    container_name: spring_container
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - 8087:8080
-    depends_on:
-      - db
-  
+ 
   frontend:
     container_name: angular_container
     build:
@@ -35,4 +26,14 @@ services:
       - /home/app/node_modules
     depends_on:
       - db
+  backend:
+    container_name: spring_container
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8087:8080
+    depends_on:
+      - db
+  
 
