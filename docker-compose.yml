@@ -4,6 +4,7 @@ services:
   db:
     platform: linux/x86_64
     image: "mysql:5.7"
+    container: mysql-cont
     ports:
       - 3306:3306
     #volumes:
@@ -18,17 +19,26 @@ services:
   backend:
     depends_on:
       - db
-    build: ./backend
+    
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    image: my_backend_image:latest
+    container: my_backend_cont
     restart: always
     ports:
-      - 8080:8080
+      - 8087:8080
 
   frontend:
     depends_on:
       - db
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: my_frontend_image:latest
+    container: my_frontend_cont
     ports:
-      - 4200:80
+      - 4207:80
     
 #volumes:
   #db_data=C:\Users\hp\Documents\projet-rachid\backend\src\main\resources\db
