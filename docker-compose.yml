@@ -13,7 +13,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
       networks:
-      - mynetwork
+         - mynetwork
 
   backend:
     depends_on:
@@ -23,7 +23,7 @@ services:
     ports:
       - 8087:8080
       networks:
-      - mynetwork
+        - mynetwork
 
   frontend:
     depends_on:
@@ -32,7 +32,8 @@ services:
     ports:
       - 4207:80
       networks:
-      - mynetwork
+        - mynetwork
+        
 networks:
   mynetwork:
     drive: bridge
