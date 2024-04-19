@@ -23,8 +23,9 @@ pipeline {
                 script {
                     sh "docker build -t front-test . "
                 }
-            }
-        }
+              }
+           }
+         }
          stage("deploy docker") {
              steps {
                 script {
