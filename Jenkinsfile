@@ -20,39 +20,23 @@ pipeline {
                          credentialsId: 'githubtoken-pub'   
             }
          }
-         
-         stage("build and Run frontend") {
-             steps {
-               // Aller au répertoire du frontend
-                dir('frontend') {
-		script{
-                    sh " docker stop front-cont || true && docker rm front-cont || true"
-                    sh " docker run --name front-cont -d -p 4203:80 front-test"
-                    sh "docker build -t front-test . "
-		}
-              }
-           }
-         }
-        
-         stage("Maven Build backend") {
+          stage("Maven Build backend") {
              steps {
                  dir ('backend'){
 			 sh "mvn package -DskipTests=true"
 		 }
              }      
         }
-	stage('Build Docker Image et container backend'){
-	   steps {
-               dir('backend'){
-                script {
-		            sh 'docker stop back-cont'
-                            sh 'docker rm back-cont'
-                            sh 'docker build -t back-test .'
-		            sh 'docker run -d -p 8086:8086 --name back-cont back-test'
-		       }
-	       }
-            }
-        }
+         stage("build and Run frontend") {
+             
+		script{
+                    sh " docker-compose down "
+		    sh " docker-compose up -d "
+                    
+           }
+         }
+        
+        	
           stage('Test Qualité Sonarqube') {
                steps {           
                   withSonarQubeEnv('sonarqube-server') {
