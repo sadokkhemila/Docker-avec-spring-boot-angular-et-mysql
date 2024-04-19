@@ -79,7 +79,7 @@ pipeline {
 		 dir('backend'){   
 		  nexusArtifactUploader artifacts: [	
 			         [
-				      artifactId: 'backend',
+				      artifactId: 'spring-boot-starter-parent',
 				      classifier: '',
 				      file: 'target/backend-0.0.1-SNAPSHOT.jar',
 				      type: 'jar'	
