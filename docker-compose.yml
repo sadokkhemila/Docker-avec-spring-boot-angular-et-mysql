@@ -21,9 +21,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4207:80
-    volumes:
-      - ./frontend:/home/app
-      - /home/app/node_modules
+    
     depends_on:
       - db
   backend:
