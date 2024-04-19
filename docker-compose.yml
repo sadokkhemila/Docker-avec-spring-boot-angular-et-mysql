@@ -6,8 +6,6 @@ services:
     image: "mysql:5.7"
     ports:
       - 3306:3306
-    #volumes:
-      #- C:\Users\hp\Documents\projet-rachid\backend\src\main\resources\db=/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
