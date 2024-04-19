@@ -86,8 +86,9 @@ pipeline {
             } 
         }
 	stage('upload Backend to nexus'){
+		steps{
 		 dir('backend'){
-	     steps{
+	               
 		
 		  nexusArtifactUploader artifacts: [	
 			         [
