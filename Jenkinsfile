@@ -34,6 +34,28 @@ pipeline {
                 }
             }
         }
+         stage("Maven Build backend") {
+             steps {
+                 dir ('backend'){
+                script {
+                    sh "mvn package -DskipTests=true"
+                }
+            }
+             }      
+        }
+	stage('Build Docker Imager et container backend'){
+	   steps {
+               dir('backend'){
+                script {
+		    
+                    sh 'docker build -t back-test .'
+		            sh 'docker run -d -p 8086:8086 --name back-cont back-test'
+		      
+                }
+           }
+            }
+            
+        }
           stage('Test Qualité Sonarqube') {
               environment {
                     scannerHome = tool 'sonar-scanner'
@@ -56,6 +78,8 @@ pipeline {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh "docker tag front-test:latest sadokkhemila/front-test:latest"
                     sh "docker push sadokkhemila/front-test:latest"
+                    sh "docker tag back-test:latest sadokkhemila/back-test:latest"
+                    sh "docker push sadokkhemila/back-test:latest"
                 }
              }
             } 
