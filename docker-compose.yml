@@ -14,6 +14,8 @@ services:
       - MYSQL_DATABASE=project_db
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
+      networks:
+      - mynetwork
 
   backend:
     depends_on:
@@ -22,6 +24,8 @@ services:
     restart: always
     ports:
       - 8087:8080
+    networks:
+      - mynetwork
 
   frontend:
     depends_on:
@@ -29,6 +33,9 @@ services:
     build: ./frontend
     ports:
       - 4207:80
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
     
-#volumes:
-  #db_data=C:\Users\hp\Documents\projet-rachid\backend\src\main\resources\db
+
