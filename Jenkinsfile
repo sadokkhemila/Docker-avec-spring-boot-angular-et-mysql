@@ -20,9 +20,9 @@ pipeline {
              steps {
                // Aller au répertoire du frontend
                 dir('frontend') {
-                script {
+                
                     sh "docker build -t front-test . "
-                }
+            
               }
            }
          }
