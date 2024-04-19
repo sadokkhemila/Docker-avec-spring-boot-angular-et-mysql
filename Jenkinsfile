@@ -29,7 +29,7 @@ pipeline {
          stage("deploy docker") {
              steps {
                 script {
-                    sh " docker stop frront-cont || true && docker rm front-cont || true"
+                    sh " docker stop front-cont || true && docker rm front-cont || true"
                     sh " docker run --name front-cont -d -p 4203:80 front-test"
                 }
             }
