@@ -21,14 +21,14 @@ services:
     build: ./backend
     restart: always
     ports:
-      - 8080:8080
+      - 8087:8080
 
   frontend:
     depends_on:
       - db
     build: ./frontend
     ports:
-      - 4200:80
+      - 4207:80
     
 #volumes:
   #db_data=C:\Users\hp\Documents\projet-rachid\backend\src\main\resources\db
