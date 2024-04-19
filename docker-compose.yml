@@ -2,18 +2,15 @@ version: '3.8'
 services:
 
   db:
-    platform: linux/x86_64
-    image: "mysql:5.7"
-    ports:
-      - 3306:3306
-    #volumes:
-      #- C:\Users\hp\Documents\projet-rachid\backend\src\main\resources\db=/var/lib/mysql
+    image: postgres:16
+    container_name: postgres_db
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root_password
-      - MYSQL_DATABASE=project_db
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
+      POSTGRES_PASSWORD: "jG5*p#XtW9b@E3"
+    ports:
+      - "5433:5432"
+    volumes:
+      - /data:/var/lib/postgresql/data
     networks:
       - my_network
 
