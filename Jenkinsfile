@@ -2,17 +2,14 @@ pipeline {
     agent any
     tools {
         maven "maven"
-    }
-  
-   
+    }  
     
     stages {
          stage("Clone code from git") {
              steps {
                     
                     git branch:'main', url:'https://github.com/sadokkhemila/Docker-avec-spring-boot-angular-et-mysql.git',
-                         credentialsId: 'githubtoken-pub'
-                
+                         credentialsId: 'githubtoken-pub'   
             }
          }
          
