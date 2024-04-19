@@ -79,18 +79,18 @@ pipeline {
 		 dir('backend'){   
 		  nexusArtifactUploader artifacts: [	
 			         [
-				      artifactId: 'spring-boot-starter-parent',
+				      artifactId: 'backend',
 				      classifier: '',
 				      file: 'target/backend-0.0.1-SNAPSHOT.jar',
 				      type: 'jar'	
 			        ]	
 		  ],
-		  credentialsId: 'NEXUS_CREDENTIAL_ID',  
-		  groupId: 'com.example',
-		  nexusUrl: 'NEXUS_URL',
-		  nexusVersion: 'NEXUS_VERSION',
-		  protocol: 'NEXUS_PROTOCOL',
-		  repository: ' NEXUS_REPOSITORY',
+		  credentialsId: '${NEXUS_CREDENTIAL_ID}',  
+		  groupId: '${com.example}',
+		  nexusUrl: '${NEXUS_URL}',
+		  nexusVersion: '${NEXUS_VERSION}',
+		  protocol: '${NEXUS_PROTOCOL}',
+		  repository: '${NEXUS_REPOSITORY}',
 		  version: '0.0.1-SNAPSHOT'
 	        }
             }
