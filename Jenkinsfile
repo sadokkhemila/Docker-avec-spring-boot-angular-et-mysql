@@ -16,62 +16,49 @@ pipeline {
             }
          }
          
-         stage("build frontend") {
+         stage("build and Run frontend") {
              steps {
                // Aller au répertoire du frontend
                 dir('frontend') {
-                
+		script{
+                    sh " docker stop front-cont || true && docker rm front-cont || true"
+                    sh " docker run --name front-cont -d -p 4203:80 front-test"
                     sh "docker build -t front-test . "
-            
+		}
               }
            }
          }
-         stage("deploy docker") {
-             steps {
-                script {
-                    sh " docker stop front-cont || true && docker rm front-cont || true"
-                    sh " docker run --name front-cont -d -p 4203:80 front-test"
-                }
-            }
-        }
+        
          stage("Maven Build backend") {
              steps {
                  dir ('backend'){
-                script {
-                    sh "mvn package -DskipTests=true"
-                }
-            }
+			 sh "mvn package -DskipTests=true"
+		 }
              }      
         }
-	stage('Build Docker Imager et container backend'){
+	stage('Build Docker Image et container backend'){
 	   steps {
                dir('backend'){
                 script {
 		            sh 'docker stop back-cont'
                             sh 'docker rm back-cont'
-                           sh 'docker build -t back-test .'
+                            sh 'docker build -t back-test .'
 		            sh 'docker run -d -p 8086:8086 --name back-cont back-test'
-		      
-                }
-           }
+		       }
+	       }
             }
-            
         }
           stage('Test Qualité Sonarqube') {
               environment {
                     scannerHome = tool 'sonar-scanner'
                 }
-               steps {
-              
-               
+               steps {           
                   withSonarQubeEnv('sonarqube-server') {
-                         sh" ${scannerHome}/bin/sonar-scanner"
-                  
-                  
+                         sh" ${scannerHome}/bin/sonar-scanner"                 
                 }
             }
         }
-        stage('Login and Push Image DockerHub'){
+        stage('Login and Push Images "frontend and backend" DockerHub'){
             steps {
               script {
                 echo 'logging in to docker hub and pushing image..'
@@ -87,9 +74,7 @@ pipeline {
         }
 	stage('upload Backend to nexus'){
 		steps{
-		 dir('backend'){
-	               
-		
+		 dir('backend'){   
 		  nexusArtifactUploader artifacts: [	
 			         [
 				      artifactId: 'backend',
@@ -108,6 +93,5 @@ pipeline {
 	        }
             }
 	 }
-
     }
 }
