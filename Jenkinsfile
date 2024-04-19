@@ -36,14 +36,15 @@ pipeline {
         }
           stage('Test Qualité Sonarqube') {
               environment {
-                    scannerHome = tool 'sonar-scanner';
+                    scannerHome = tool 'sonar-scanner'{
                 }
+               steps {
                dir('frontend') {
                
                   withSonarQubeEnv('sonarqube-server') {
                          sh" ${scannerHome}/bin/sonar-scanner"
                   
-                   
+                  }  
                 }
             }
         }
