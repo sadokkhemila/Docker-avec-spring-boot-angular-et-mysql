@@ -10,7 +10,7 @@ pipeline {
          stage("Clone code from git") {
              steps {
                     
-                    git branch:'main', url:'https://github.com/sadokkhemila/Docker-avec-spring-boot-angular-et-mysql.git',
+                    git branch:'main', url:'https://github.com/sadokkhemila/Docker-avec-spring-boot-angular-et-mysql.git/frontend',
                          credentialsId: 'githubtoken-pub'
                 
             }
