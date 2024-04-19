@@ -8,7 +8,7 @@ services:
       - 3306:3306
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD: root
+      - MYSQL_ROOT_PASSWORD: rootpassword
       - MYSQL_DATABASE: project_db
       - MYSQL_USER: user
       - MYSQL_PASSWORD: password
