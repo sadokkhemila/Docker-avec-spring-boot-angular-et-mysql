@@ -8,7 +8,7 @@ services:
       - 3306:3306
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=project_db
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
@@ -22,7 +22,7 @@ services:
     restart: always
     ports:
       - 8087:8080
-    networks:
+      networks:
       - mynetwork
 
   frontend:
@@ -31,9 +31,9 @@ services:
     build: ./frontend
     ports:
       - 4207:80
-    networks:
+      networks:
       - mynetwork
 networks:
   mynetwork:
-    
+    drive: bridge
 
