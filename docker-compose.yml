@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
 
   db:
@@ -13,27 +13,26 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
      
-
   backend:
-    depends_on:
-      - db
-    build: ./backend
-    restart: always
+    container_name: spring_container
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - 8087:8080
-      #networks:
-       # - mynetwork
-
-  frontend:
     depends_on:
       - db
-    build: ./frontend
+  
+  frontend:
+    container_name: angular_container
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - 4207:80
-    #  networks:
-     #   - mynetwork
-        
-#networks:
-  #mynetwork:
-   # drive: bridge
+    volumes:
+      - ./frontend:/home/app
+      - /home/app/node_modules
+    depends_on:
+      - db
 
