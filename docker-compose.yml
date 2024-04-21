@@ -17,7 +17,7 @@ services:
       - my_network
   pgadmin4:
     container_name: pgadmin4
-    image:dpage/pgadmin4
+    image: dpage/pgadmin4
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: sadokkhemila82@gmail.com
