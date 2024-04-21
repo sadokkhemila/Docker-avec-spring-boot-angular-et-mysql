@@ -2,19 +2,15 @@ version: '3.8'
 services:
   
   db:
-    platform: linux/x86_64
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
+    image: postgres:16
+    container_name: postgres_db
     restart: always
-    ports:
-      - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: project_db
-      MYSQL_PASSWORD: password
+      POSTGRES_PASSWORD: "jG5*p#XtW9b@E3"
+    ports:
+      - 5432:5432
     volumes:
-      - my-db:/var/lib/mysql
+      - data:/var/lib/postgresql/data
     networks:
       - my_network
   
@@ -26,8 +22,6 @@ services:
     restart: always
     ports:
       - 8087:8080
-    depends_on:
-      - db
     links:
       - db
     networks:
@@ -43,12 +37,10 @@ services:
       - 4207:80
     links:
       - backend
-    depends_on:
-      - backend
     networks:
       - my_network
 
 networks:
   my_network:
 volumes:
-  my-db:
+  data:
