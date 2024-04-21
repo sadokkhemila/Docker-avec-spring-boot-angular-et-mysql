@@ -25,7 +25,7 @@ services:
     ports:
       - "5050:80"
     volumes:
-      - pgadmindаta:/var/lib/pgadmin
+      - pgadmin_dаta:/var/lib/pgadmin
     networks:
       - my_network 
   backend: 
