@@ -15,17 +15,13 @@ services:
       - data:/var/lib/postgresql/data
     networks:
       - my_network
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
     restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: sadokkhemila82@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "5050:80"
-    volumes:
-      - pgadmin_dаta:/var/lib/pgadmin
+      - "8080:80"
+    environment:
+      PMA_ARBITRARY: 1
     networks:
       - my_network 
   backend: 
