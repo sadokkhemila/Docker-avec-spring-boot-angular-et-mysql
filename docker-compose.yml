@@ -21,7 +21,10 @@ services:
     ports:
       - "8085:80"
     environment:
-      PMA_ARBITRARY: 1
+      - POSTGRES_HOST=postgres_db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=hdinfo
+      - POSTGRES_PASS=hdinfo
     networks:
       - my_network 
   backend: 
