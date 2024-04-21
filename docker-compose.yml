@@ -1,22 +1,9 @@
 version: '3.8'
 services:
 
-  postgres-db:
-    image: postgres:16-alpine
-    container_name: postgres_db
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: "jG5*p#XtW9b@E3"
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./data:/var/lib/postgresql/data
-    networks:
-      - my_network
-
+  
   backend:
-    depends_on:
-      - postgres-db
+    
     
     build: 
       context: ./backend
@@ -29,8 +16,7 @@ services:
       - my_network
 
   frontend:
-    depends_on:
-      - postgres-db
+   
     build: 
       context: ./frontend
       dockerfile: Dockerfile
