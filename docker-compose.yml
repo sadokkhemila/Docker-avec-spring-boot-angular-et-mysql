@@ -1,10 +1,19 @@
 version: '3.8'
 services:
-
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "jG5*p#XtW9b@E3"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - my_network
   
-  backend:
-    
-    
+  backend: 
     build: 
       context: ./backend
       dockerfile: Dockerfile
@@ -12,11 +21,12 @@ services:
     restart: always
     ports:
       - 8087:8080
+    depends_on:
+      - postgres-db
     networks:
       - my_network
 
   frontend:
-   
     build: 
       context: ./frontend
       dockerfile: Dockerfile
@@ -28,6 +38,3 @@ services:
 
 networks:
   my_network:
-    
-#volumes:
-  #db_data=C:\Users\hp\Documents\projet-rachid\backend\src\main\resources\db
