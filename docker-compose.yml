@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_PASSWORD: "jG5*p#XtW9b@E3"
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - /data:/var/lib/postgresql/data
     networks:
@@ -21,7 +21,7 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
-    image: my_backend_image:latest
+    image: back-test:latest
     restart: always
     ports:
       - 8087:8080
@@ -34,7 +34,7 @@ services:
     build: 
       context: ./frontend
       dockerfile: Dockerfile
-    image: my_frontend_image:latest
+    image: front-test:latest
     ports:
       - 4207:80
     networks:
