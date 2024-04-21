@@ -1,7 +1,7 @@
 version: '3.8'
 services:
 
-  db:
+  postgres-db:
     image: postgres:16-alpine
     container_name: postgres_db
     restart: always
@@ -16,7 +16,7 @@ services:
 
   backend:
     depends_on:
-      - db
+      - postgres-db
     
     build: 
       context: ./backend
@@ -30,7 +30,7 @@ services:
 
   frontend:
     depends_on:
-      - db
+      - postgres-db
     build: 
       context: ./frontend
       dockerfile: Dockerfile
