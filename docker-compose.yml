@@ -23,8 +23,11 @@ services:
       - 8087:8080
     depends_on:
       - postgres-db
+    links:
+      - postgres-db
     networks:
       - my_network
+
 
   frontend:
     build: 
@@ -33,6 +36,8 @@ services:
     image: front-test:latest
     ports:
       - 4207:80
+    links:
+      - backend
     networks:
       - my_network
 
