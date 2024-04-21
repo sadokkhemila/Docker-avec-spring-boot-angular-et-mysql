@@ -43,8 +43,12 @@ services:
       - 4207:80
     links:
       - backend
+    depends_on:
+      - backend
     networks:
       - my_network
 
 networks:
   my_network:
+volumes:
+  my-db:
