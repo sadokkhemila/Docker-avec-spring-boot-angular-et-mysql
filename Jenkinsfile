@@ -24,6 +24,7 @@ pipeline {
              steps {
                  dir ('backend'){
 			 sh "mvn package -DskipTests=true"
+			 sh " mvn test"
 		 }
              }      
         }
