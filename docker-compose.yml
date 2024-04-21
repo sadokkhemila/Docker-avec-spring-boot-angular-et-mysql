@@ -19,7 +19,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8080:80"
+      - "8085:80"
     environment:
       PMA_ARBITRARY: 1
     networks:
@@ -61,4 +61,4 @@ networks:
   my_network:
 volumes:
   data:
-  pgadmindаta:
+  
