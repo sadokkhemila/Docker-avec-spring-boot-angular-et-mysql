@@ -31,7 +31,7 @@ pipeline {
          stage("build and Run frontend") {
              steps {
 		script{
-                    
+                     sh "docker-compose down "
 		     sh " docker-compose up -d "
 		    
 		}
